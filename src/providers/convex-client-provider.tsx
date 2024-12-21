@@ -1,14 +1,13 @@
 "use client";
 
 import { ClerkProvider, useAuth } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
-import { AuthLoading, ConvexReactClient } from "convex/react";
+import { ConvexReactClient } from "convex/react";
 import { ConvexProviderWithClerk } from "convex/react-clerk";
 
 import { ConvexQueryClient } from "@convex-dev/react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-import { Loading } from "@/components/loading";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
@@ -29,14 +28,11 @@ type Props = {
 
 export const ConvexClientProvider = ({ children }: Props) => {
     return (
-        <ClerkProvider afterSignOutUrl="/sign-in">
+        <ClerkProvider appearance={{ baseTheme: dark }}>
             <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
                 <QueryClientProvider client={queryClient}>
                     {children}
                 </QueryClientProvider>
-                <AuthLoading>
-                    <Loading />
-                </AuthLoading>
             </ConvexProviderWithClerk>
         </ClerkProvider>
     );
