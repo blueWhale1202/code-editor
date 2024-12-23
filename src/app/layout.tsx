@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import { Toaster } from "@/components/ui/sonner";
 import { ConvexClientProvider } from "@/providers/convex-client-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -34,6 +35,7 @@ export default function RootLayout({
                         <NuqsAdapter>{children}</NuqsAdapter>
                     </ThemeProvider>
                 </ConvexClientProvider>
+                <Toaster richColors theme="light" />
             </body>
         </html>
     );

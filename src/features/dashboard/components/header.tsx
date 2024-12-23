@@ -7,8 +7,8 @@ import { Navigation } from "@/components/navigation";
 import { ProfileButton } from "@/components/profile-button";
 import { Separator } from "@/components/ui/separator";
 
+import { ShareSnippet } from "../../snippets/components/share-snippet";
 import { LanguageSelector } from "./language-selector";
-import { ShareSnippet } from "./share-snippet";
 import { ThemeSelector } from "./theme-selector";
 
 export const Header = () => {

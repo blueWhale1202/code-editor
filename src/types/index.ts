@@ -1,3 +1,5 @@
+import { Id } from "../../convex/_generated/dataModel";
+
 export enum Theme {
     Default = "vs-dark",
     Dracula = "dracula",
@@ -18,4 +20,14 @@ export enum Language {
 export type DraftCode = {
     language: Language;
     code?: string;
+};
+
+export type Snippet = {
+    _id: Id<"snippets">;
+    _creationTime: number;
+    userId: string;
+    language: string;
+    code: string;
+    title: string;
+    userName: string;
 };

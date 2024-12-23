@@ -27,6 +27,12 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 
+import { toast } from "sonner";
+
+import { useGetLastExecution } from "@/features/dashboard/api/use-get-execute";
+import { useEditor } from "@/hooks/use-editor";
+import { useShareSnippet } from "../api/use-share-snippet";
+
 const formSchema = z.object({
     title: z
         .string()
@@ -48,16 +54,40 @@ export const ShareSnippet = () => {
 
     const [open, setOpen] = useState(false);
 
-    const onSubmit = (values: FormValues) => {
-        console.log(values);
-        form.reset();
-        setOpen(false);
+    const share = useShareSnippet();
+    const lastExecution = useGetLastExecution();
+    const {
+        config: { language },
+    } = useEditor();
+
+    const disabled =
+        share.isPending ||
+        lastExecution.isPending ||
+        !lastExecution.data?.output ||
+        lastExecution.data?.language !== language;
+
+    const onSubmit = ({ title }: FormValues) => {
+        if (disabled || !lastExecution.data) return;
+
+        share.mutate(
+            {
+                title,
+                executionId: lastExecution.data._id,
+            },
+            {
+                onSuccess() {
+                    form.reset();
+                    setOpen(false);
+                    toast.success("Snippet shared successfully");
+                },
+            },
+        );
     };
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button>
+                <Button disabled={disabled}>
                     <ShareIcon />
                     Share
                 </Button>
@@ -99,7 +129,9 @@ export const ShareSnippet = () => {
                                 </Button>
                             </DialogClose>
 
-                            <Button type="submit">Submit</Button>
+                            <Button type="submit" disabled={disabled}>
+                                Share
+                            </Button>
                         </div>
                     </form>
                 </Form>
