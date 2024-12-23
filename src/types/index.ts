@@ -1,9 +1,9 @@
 export enum Theme {
     Default = "vs-dark",
-    Dracula = "Dracula",
-    NightOwl = "Night Owl",
-    Github = "GitHub Dark",
-    Cobalt = "Cobalt",
+    Dracula = "dracula",
+    NightOwl = "nightOwl",
+    Github = "github",
+    Cobalt = "cobalt",
 }
 
 export enum Language {

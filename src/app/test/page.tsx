@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useLoadEditorTheme } from "@/hooks/use-editor-theme";
+import { defineMonacoThemes } from "@/features/dashboard/lib/utils";
 import { Theme } from "@/types";
 import { Editor } from "@monaco-editor/react";
 import { useState } from "react";
@@ -63,16 +63,10 @@ interface ExternalApi {
 }
 `);
 
-    const [theme, setTheme] = useState<Theme>(Theme.Default);
-
-    const { loaded, themeName } = useLoadEditorTheme(theme);
+    const [theme, setTheme] = useState<Theme>(Theme.Dracula);
 
     return (
         <div>
-            {/*  Default = "vs-dark",
-    Dracula = "Dracula",
-    NightOwl = "Night Owl",
-    Github = "GitHub Dark", */}
             <div className="flex gap-2">
                 <Button onClick={() => setTheme(Theme.Default)}>Default</Button>
                 <Button onClick={() => setTheme(Theme.Dracula)}>Dracula</Button>
@@ -88,8 +82,10 @@ interface ExternalApi {
                 width="100%"
                 height="calc(100vh - 154px)"
                 value={content}
-                theme={loaded ? themeName : "vs-dark"}
+                theme={theme}
+                beforeMount={defineMonacoThemes}
                 language="kotlin"
+                loading={<div>Loading...</div>}
             />
         </div>
     );

@@ -58,7 +58,7 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
     javascript: {
         label: "JavaScript",
         value: Language.JavaScript,
-        logo: "language/javascript.svg",
+        logo: "languages/javascript.svg",
         pistonRuntime: {
             language: Language.JavaScript,
             version: RUNTIMES[Language.JavaScript],
@@ -68,7 +68,7 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
     typescript: {
         label: "TypeScript",
         value: Language.TypeScript,
-        logo: "language/typescript.svg",
+        logo: "languages/typescript.svg",
         pistonRuntime: {
             language: Language.TypeScript,
             version: RUNTIMES[Language.TypeScript],
@@ -78,7 +78,7 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
     python: {
         label: "Python",
         value: Language.Python,
-        logo: "language/python.svg",
+        logo: "languages/python.svg",
         pistonRuntime: {
             language: Language.Python,
             version: RUNTIMES[Language.Python],
@@ -88,7 +88,7 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
     java: {
         label: "Java",
         value: Language.Java,
-        logo: "language/java.svg",
+        logo: "languages/java.svg",
         pistonRuntime: {
             language: Language.Java,
             version: RUNTIMES[Language.Java],
@@ -98,7 +98,7 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
     cpp: {
         label: "C++",
         value: Language.Cpp,
-        logo: "language/cpp.svg",
+        logo: "languages/cpp.svg",
         pistonRuntime: {
             language: Language.Cpp,
             version: RUNTIMES[Language.Cpp],
@@ -108,7 +108,7 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
     csharp: {
         label: "C#",
         value: Language.CSharp,
-        logo: "language/csharp.svg",
+        logo: "languages/csharp.svg",
         pistonRuntime: {
             language: Language.CSharp,
             version: RUNTIMES[Language.CSharp],
