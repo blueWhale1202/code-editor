@@ -8,6 +8,7 @@ export default function SnippetsLayout({ children }: Props) {
     return (
         <div className="h-full">
             <Header />
+
             {children}
         </div>
     );

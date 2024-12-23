@@ -74,6 +74,22 @@ export const getSnippet = query({
     },
 });
 
+export const isStarred = query({
+    args: { id: v.id("snippets") },
+    handler: async (ctx, { id }) => {
+        const user = await getCurrentUserOrThrow(ctx);
+
+        const isStarred = await ctx.db
+            .query("stars")
+            .withIndex("by_user_id_snippet_id", (q) =>
+                q.eq("userId", user._id).eq("snippetId", id),
+            )
+            .unique();
+
+        return !!isStarred;
+    },
+});
+
 export const getSnippets = query({
     args: {
         paginationOpts: paginationOptsValidator,
@@ -118,18 +134,19 @@ export const getSnippetStarCount = query({
     },
 });
 
-export const isStarred = query({
-    args: { id: v.id("snippets") },
-    handler: async (ctx, { id }) => {
+export const getStarredSnippets = query({
+    handler: async (ctx) => {
         const user = await getCurrentUserOrThrow(ctx);
 
-        const isStarred = await ctx.db
+        const stars = await ctx.db
             .query("stars")
-            .withIndex("by_user_id_snippet_id", (q) =>
-                q.eq("userId", user._id).eq("snippetId", id),
-            )
-            .unique();
+            .withIndex("by_user_id", (q) => q.eq("userId", user._id))
+            .collect();
 
-        return !!isStarred;
+        const snippets = await Promise.all(
+            stars.map((star) => ctx.db.get(star.snippetId)),
+        );
+
+        return snippets.filter((snippets) => snippets !== null);
     },
 });

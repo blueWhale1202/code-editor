@@ -6,9 +6,9 @@ type Props = {
     className?: HTMLImageElement["className"];
 };
 
-export const UserAvatar = ({ src }: Props) => {
+export const UserAvatar = ({ src, className }: Props) => {
     return (
-        <Avatar>
+        <Avatar className={className}>
             <AvatarImage src={src} />
             <AvatarFallback>
                 <UserIcon className="size-4 text-[#808086]" />
