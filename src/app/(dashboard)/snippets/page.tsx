@@ -4,7 +4,7 @@ import { BookOpen } from "lucide-react";
 
 export default function SnippetsPage() {
     return (
-        <div className="mx-auto max-w-7xl px-4 py-12">
+        <main className="mx-auto max-w-7xl px-4 py-12">
             <div className="mx-auto mb-16 max-w-3xl space-y-6 text-center">
                 <Badge
                     variant="secondary"
@@ -23,6 +23,6 @@ export default function SnippetsPage() {
             </div>
 
             <FilterSection />
-        </div>
+        </main>
     );
 }

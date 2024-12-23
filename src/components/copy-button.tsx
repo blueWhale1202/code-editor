@@ -1,19 +1,24 @@
+"use client";
+
 import { useCopyToClipboard } from "@/hooks/use-copy-clipboard";
+import { cn } from "@/lib/utils";
 import { CheckCircle, Copy } from "lucide-react";
 import { Button } from "./ui/button";
 
 type Props = {
     value?: string;
+    className?: HTMLButtonElement["className"];
 };
 
-export const CopyButton = ({ value }: Props) => {
+export const CopyButton = ({ value, className }: Props) => {
     const { isCopied, copyToClipboard } = useCopyToClipboard();
 
     return (
         <Button
-            variant="secondary"
+            type="button"
             size="sm"
-            className="text-xs font-normal"
+            variant="secondary"
+            className={cn("text-xs font-normal", className)}
             onClick={() => copyToClipboard(value)}
         >
             {isCopied ? (

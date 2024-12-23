@@ -53,6 +53,7 @@ export const upsertFromClerk = internalMutation({
             name:
                 data.first_name + " " + data.last_name ||
                 data.email_addresses[0].email_address,
+            imageUrl: data.image_url,
         };
 
         const user = await userByExternalId(ctx, userAttributes.userId);
@@ -79,8 +80,6 @@ export const getUser = query({
             .query("users")
             .withIndex("by_user_id", (q) => q.eq("userId", userId))
             .unique();
-
-        if (!user) return null;
 
         return user;
     },

@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { Button } from "@/components/ui/button";
 import { Code, X } from "lucide-react";
 
@@ -16,7 +18,16 @@ export const SnippetList = () => {
         ...searchQuery,
     });
 
-    if (status === "LoadingFirstPage") {
+    useEffect(() => {
+        if (status === "CanLoadMore" && !results.length) {
+            loadMore(5);
+        }
+    }, [status, results.length, loadMore]);
+
+    if (
+        status === "LoadingFirstPage" ||
+        (status === "LoadingMore" && !results.length)
+    ) {
         return (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {[...Array(6)].map((_, i) => (
@@ -33,16 +44,16 @@ export const SnippetList = () => {
                     <SnippetCard key={snippet._id} snippet={snippet} />
                 ))}
             </div>
-            {results.length > 0 && (
-                <div className="mt-8 flex justify-center">
-                    <LoadMoreButton
-                        isLoading={isLoading}
-                        status={status}
-                        onLoadMore={() => loadMore(5)}
-                    />
-                </div>
-            )}
-            {!isLoading && results.length === 0 && (
+
+            <div className="mt-8 flex justify-center">
+                <LoadMoreButton
+                    isLoading={isLoading}
+                    status={status}
+                    onLoadMore={() => loadMore(5)}
+                />
+            </div>
+
+            {status === "Exhausted" && !results.length && (
                 <div className="mt-20 space-y-4 text-center">
                     <div className="inline-flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 ring-1 ring-white/10">
                         <Code className="size-8 text-gray-400" />

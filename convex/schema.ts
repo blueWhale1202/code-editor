@@ -6,6 +6,7 @@ export default defineSchema({
         userId: v.string(),
         email: v.string(),
         name: v.string(),
+        imageUrl: v.optional(v.string()),
     }).index("by_user_id", ["userId"]),
 
     codeExecutions: defineTable({

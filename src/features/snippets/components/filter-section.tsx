@@ -86,7 +86,7 @@ export const FilterSection = () => {
                             <span className="text-sm">{label}</span>
                         </Button>
                     ))}
-                    {(selectedLanguage || search) && (
+                    {(selectedLanguage || search || value) && (
                         <Button
                             variant="ghost"
                             className="gap-x-1 text-gray-300 hover:bg-transparent hover:text-white"

@@ -31,3 +31,12 @@ export type Snippet = {
     title: string;
     userName: string;
 };
+
+export type Comment = {
+    _id: Id<"comments">;
+    _creationTime: number;
+    userId: string;
+    userName: string;
+    snippetId: Id<"snippets">;
+    content: string;
+};

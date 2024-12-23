@@ -16,27 +16,39 @@ type Props = {
     theme: Theme;
     language: Language;
     value?: string;
-    onChange: (value?: string) => void;
+    onChange?: (value?: string) => void;
+    readonly?: boolean;
 };
 
-export const CodeEditor = ({ theme, language, value, onChange }: Props) => {
+export const CodeEditor = ({
+    theme,
+    readonly = false,
+    language,
+    value,
+    onChange,
+}: Props) => {
     const isMounted = useMounted();
 
     if (!isMounted) {
         return null;
     }
 
+    const handleChange = (value?: string) => {
+        if (!onChange) return;
+
+        onChange(value);
+        setDraftCode({ language, code: value });
+    };
+
     return (
         <Editor
             language={language}
             theme={theme}
             value={value}
-            onChange={(value) => {
-                onChange(value);
-                setDraftCode({ language, code: value });
-            }}
+            onChange={handleChange}
             beforeMount={defineMonacoThemes}
             options={{
+                readOnly: readonly,
                 fontSize: 15,
                 automaticLayout: true,
                 scrollBeyondLastLine: false,

@@ -67,6 +67,13 @@ export const deleteSnippet = mutation({
     },
 });
 
+export const getSnippet = query({
+    args: { id: v.id("snippets") },
+    handler: async (ctx, { id }) => {
+        return ctx.db.get(id);
+    },
+});
+
 export const getSnippets = query({
     args: {
         paginationOpts: paginationOptsValidator,
