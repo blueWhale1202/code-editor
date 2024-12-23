@@ -8,6 +8,7 @@ import { ConvexProviderWithClerk } from "convex/react-clerk";
 
 import { ConvexQueryClient } from "@convex-dev/react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
@@ -32,6 +33,7 @@ export const ConvexClientProvider = ({ children }: Props) => {
             <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
                 <QueryClientProvider client={queryClient}>
                     {children}
+                    <ReactQueryDevtools initialIsOpen={false} />
                 </QueryClientProvider>
             </ConvexProviderWithClerk>
         </ClerkProvider>

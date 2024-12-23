@@ -1,16 +1,37 @@
+import { Hint } from "@/components/hint";
 import { Button } from "@/components/ui/button";
+
 import { Loader2, Play } from "lucide-react";
 
-export const RunButton = () => {
-    const isRunning = false;
+import { useCurrentUser } from "@/hooks/use-current-user";
+
+type Props = {
+    disabled: boolean;
+    onClick: () => void;
+};
+
+export const RunButton = ({ disabled, onClick }: Props) => {
+    const { isAuthenticated, user } = useCurrentUser();
+
+    const onExecute = () => {
+        if (!isAuthenticated || disabled) return;
+
+        onClick();
+    };
 
     return (
-        <Button>
-            <div className="flex items-center gap-2.5">
-                {isRunning ? (
+        <Hint
+            label={
+                isAuthenticated
+                    ? "Run this code"
+                    : "You need to Login/Sing up to Run"
+            }
+        >
+            <Button disabled={disabled} onClick={onExecute}>
+                {disabled ? (
                     <>
                         <Loader2 className="animate-spin text-white/70" />
-                        Executing...
+                        Executing
                     </>
                 ) : (
                     <>
@@ -18,7 +39,7 @@ export const RunButton = () => {
                         Run Code
                     </>
                 )}
-            </div>
-        </Button>
+            </Button>
+        </Hint>
     );
 };

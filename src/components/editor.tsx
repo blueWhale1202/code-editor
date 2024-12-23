@@ -1,9 +1,16 @@
 "use client";
 
-import { defineMonacoThemes } from "@/features/dashboard/lib/utils";
 import { Language, Theme } from "@/types";
+
 import { Editor } from "@monaco-editor/react";
 import { Skeleton } from "./ui/skeleton";
+
+import {
+    defineMonacoThemes,
+    setDraftCode,
+} from "@/features/dashboard/lib/utils";
+
+import { useMounted } from "@/hooks/use-mounted";
 
 type Props = {
     theme: Theme;
@@ -13,15 +20,24 @@ type Props = {
 };
 
 export const CodeEditor = ({ theme, language, value, onChange }: Props) => {
+    const isMounted = useMounted();
+
+    if (!isMounted) {
+        return null;
+    }
+
     return (
         <Editor
             language={language}
             theme={theme}
             value={value}
-            onChange={onChange}
+            onChange={(value) => {
+                onChange(value);
+                setDraftCode({ language, code: value });
+            }}
             beforeMount={defineMonacoThemes}
             options={{
-                fontSize: 16,
+                fontSize: 15,
                 automaticLayout: true,
                 scrollBeyondLastLine: false,
                 padding: { top: 16, bottom: 16 },

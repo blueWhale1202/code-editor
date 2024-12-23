@@ -1,12 +1,14 @@
+"use client";
+
 import { SignedIn } from "@clerk/nextjs";
 
 import { Logo } from "@/components/logo";
 import { Navigation } from "@/components/navigation";
 import { ProfileButton } from "@/components/profile-button";
-
 import { Separator } from "@/components/ui/separator";
+
 import { LanguageSelector } from "./language-selector";
-import { RunButton } from "./run-button";
+import { ShareSnippet } from "./share-snippet";
 import { ThemeSelector } from "./theme-selector";
 
 export const Header = () => {
@@ -23,7 +25,7 @@ export const Header = () => {
                     <LanguageSelector />
 
                     <SignedIn>
-                        <RunButton />
+                        <ShareSnippet />
                     </SignedIn>
 
                     <Separator

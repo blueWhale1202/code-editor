@@ -1,7 +1,5 @@
 import { Language, Theme } from "@/types";
 
-import { RUNTIMES } from "./runtime";
-
 import {
     CloudMoon,
     Eclipse,
@@ -55,7 +53,6 @@ type LanguageConfig = {
     label: string;
     value: Language;
     logo: string;
-    pistonRuntime: { language: Language; version: string };
 };
 
 export const LANGUAGES: Record<Language, LanguageConfig> = {
@@ -63,54 +60,32 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
         label: "JavaScript",
         value: Language.JavaScript,
         logo: "languages/javascript.svg",
-        pistonRuntime: {
-            language: Language.JavaScript,
-            version: RUNTIMES[Language.JavaScript],
-        },
     },
     typescript: {
         label: "TypeScript",
         value: Language.TypeScript,
         logo: "languages/typescript.svg",
-        pistonRuntime: {
-            language: Language.TypeScript,
-            version: RUNTIMES[Language.TypeScript],
-        },
     },
     python: {
         label: "Python",
         value: Language.Python,
         logo: "languages/python.svg",
-        pistonRuntime: {
-            language: Language.Python,
-            version: RUNTIMES[Language.Python],
-        },
     },
     java: {
         label: "Java",
         value: Language.Java,
         logo: "languages/java.svg",
-        pistonRuntime: {
-            language: Language.Java,
-            version: RUNTIMES[Language.Java],
-        },
     },
     cpp: {
         label: "C++",
         value: Language.Cpp,
         logo: "languages/cpp.svg",
-        pistonRuntime: {
-            language: Language.Cpp,
-            version: RUNTIMES[Language.Cpp],
-        },
     },
     csharp: {
         label: "C#",
         value: Language.CSharp,
         logo: "languages/csharp.svg",
-        pistonRuntime: {
-            language: Language.CSharp,
-            version: RUNTIMES[Language.CSharp],
-        },
     },
 };
+
+export const DRAFT_CODE_KEY = "editor-draft";

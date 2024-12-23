@@ -14,3 +14,8 @@ export enum Language {
     Cpp = "cpp",
     CSharp = "csharp",
 }
+
+export type DraftCode = {
+    language: Language;
+    code?: string;
+};

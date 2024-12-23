@@ -53,7 +53,6 @@ export const upsertFromClerk = internalMutation({
             name:
                 data.first_name + " " + data.last_name ||
                 data.email_addresses[0].email_address,
-            isPro: false,
         };
 
         const user = await userByExternalId(ctx, userAttributes.userId);
