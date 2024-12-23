@@ -1,5 +1,8 @@
 "use client";
 
+import { Language } from "@/types";
+import { LANGUAGES } from "../constants";
+
 import Image from "next/image";
 import { useState } from "react";
 
@@ -19,14 +22,20 @@ import {
 import { cn } from "@/lib/utils";
 import { ChevronsUpDown, Sparkles } from "lucide-react";
 
-import { Language } from "@/types";
-import { LANGUAGES } from "../constants";
+import { useEditor } from "@/hooks/use-editor";
 
 export const LanguageSelector = () => {
-    const data = LANGUAGES;
-
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(data.javascript.value);
+
+    const {
+        config: { language: value },
+        setConfig,
+    } = useEditor();
+
+    const onSelect = (value: string) => {
+        setConfig({ language: value as Language });
+        setOpen(false);
+    };
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -39,7 +48,7 @@ export const LanguageSelector = () => {
                 >
                     <div className="size-6 rounded-md bg-gray-800/50 p-0.5">
                         <Image
-                            src={data[value].logo}
+                            src={LANGUAGES[value].logo}
                             alt="programming language logo"
                             width={24}
                             height={24}
@@ -47,7 +56,7 @@ export const LanguageSelector = () => {
                         />
                     </div>
                     <span className="text-gray-300 group-hover:text-white">
-                        {value ? data[value].label : "Select item..."}
+                        {value ? LANGUAGES[value].label : "Select item..."}
                     </span>
 
                     <ChevronsUpDown className="ml-auto shrink-0 opacity-50" />
@@ -57,22 +66,19 @@ export const LanguageSelector = () => {
                 <Command className="bg-[#1e1e2e]/95">
                     <CommandList>
                         <CommandGroup heading="Select Language">
-                            {Object.values(data).map((item) => {
+                            {Object.values(LANGUAGES).map((item) => {
                                 const isActive = value === item.value;
 
                                 return (
                                     <CommandItem
                                         key={item.label}
                                         className={cn(
-                                            "group border-2 border-transparent py-2 text-gray-300 data-[selected=true]:bg-[#262637] data-[selected=true]:text-white",
+                                            "LANGUAGES-[selected=true]:bg-[#262637] LANGUAGES-[selected=true]:text-white group border-2 border-transparent py-2 text-gray-300",
                                             isActive &&
                                                 "border-blue-500/30 bg-blue-500/10 text-blue-400",
                                         )}
                                         value={item.value}
-                                        onSelect={(currentValue) => {
-                                            setValue(currentValue as Language);
-                                            setOpen(false);
-                                        }}
+                                        onSelect={onSelect}
                                     >
                                         <div
                                             className={cn(

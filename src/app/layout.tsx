@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { ConvexClientProvider } from "@/providers/convex-client-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -30,7 +31,7 @@ export default function RootLayout({
                         enableSystem
                         disableTransitionOnChange
                     >
-                        {children}
+                        <NuqsAdapter>{children}</NuqsAdapter>
                     </ThemeProvider>
                 </ConvexClientProvider>
             </body>

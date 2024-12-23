@@ -1,6 +1,5 @@
-import { Language } from "@/types";
+import { Language, Theme } from "@/types";
 
-import { CODE_EXAMPLES } from "./code-example";
 import { RUNTIMES } from "./runtime";
 
 import {
@@ -14,6 +13,7 @@ import {
 
 type ThemeItem = {
     label: string;
+    value: Theme;
     icon: LucideIcon;
     color: string;
 };
@@ -21,26 +21,31 @@ type ThemeItem = {
 export const THEMES: ThemeItem[] = [
     {
         label: "Dark",
+        value: Theme.Default,
         icon: Moon,
         color: "#1e1e1e",
     },
     {
         label: "Dracula",
+        value: Theme.Dracula,
         icon: Glasses,
         color: "#282a36",
     },
     {
         label: "Night Owl",
+        value: Theme.NightOwl,
         icon: CloudMoon,
         color: "#011627",
     },
     {
         label: "Github",
+        value: Theme.Github,
         icon: Github,
         color: "#24292e",
     },
     {
         label: "Cobalt",
+        value: Theme.Cobalt,
         icon: Eclipse,
         color: "#002240",
     },
@@ -51,7 +56,6 @@ type LanguageConfig = {
     value: Language;
     logo: string;
     pistonRuntime: { language: Language; version: string };
-    defaultCode: string;
 };
 
 export const LANGUAGES: Record<Language, LanguageConfig> = {
@@ -63,7 +67,6 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
             language: Language.JavaScript,
             version: RUNTIMES[Language.JavaScript],
         },
-        defaultCode: CODE_EXAMPLES[Language.JavaScript],
     },
     typescript: {
         label: "TypeScript",
@@ -73,7 +76,6 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
             language: Language.TypeScript,
             version: RUNTIMES[Language.TypeScript],
         },
-        defaultCode: CODE_EXAMPLES[Language.TypeScript],
     },
     python: {
         label: "Python",
@@ -83,7 +85,6 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
             language: Language.Python,
             version: RUNTIMES[Language.Python],
         },
-        defaultCode: CODE_EXAMPLES[Language.Python],
     },
     java: {
         label: "Java",
@@ -93,7 +94,6 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
             language: Language.Java,
             version: RUNTIMES[Language.Java],
         },
-        defaultCode: CODE_EXAMPLES[Language.Java],
     },
     cpp: {
         label: "C++",
@@ -103,7 +103,6 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
             language: Language.Cpp,
             version: RUNTIMES[Language.Cpp],
         },
-        defaultCode: CODE_EXAMPLES[Language.Cpp],
     },
     csharp: {
         label: "C#",
@@ -113,6 +112,5 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
             language: Language.CSharp,
             version: RUNTIMES[Language.CSharp],
         },
-        defaultCode: CODE_EXAMPLES[Language.CSharp],
     },
 };

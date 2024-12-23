@@ -1,5 +1,8 @@
 "use client";
 
+import { Theme } from "@/types";
+import { THEMES } from "../constants";
+
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -18,13 +21,20 @@ import {
 import { cn } from "@/lib/utils";
 import { ChevronsUpDown, Palette } from "lucide-react";
 
-import { THEMES } from "../constants";
+import { useEditor } from "@/hooks/use-editor";
 
 export const ThemeSelector = () => {
-    const data = THEMES;
-
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(data[0].label);
+
+    const {
+        config: { theme: value },
+        setConfig,
+    } = useEditor();
+
+    const onSelect = (value: string) => {
+        setConfig({ theme: value as Theme });
+        setOpen(false);
+    };
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -38,7 +48,7 @@ export const ThemeSelector = () => {
                     <Palette className="text-gray-400 group-hover:text-gray-300" />
                     <span className="text-gray-300 group-hover:text-white">
                         {value
-                            ? data.find((item) => item.label === value)?.label
+                            ? THEMES.find((item) => item.value === value)?.label
                             : "Select item..."}
                     </span>
 
@@ -49,24 +59,19 @@ export const ThemeSelector = () => {
                 <Command className="bg-[#1e1e2e]/95">
                     <CommandList>
                         <CommandGroup heading="Select Theme">
-                            {data.map((item) => {
+                            {THEMES.map((item) => {
                                 const isActive = value === item.label;
 
                                 return (
                                     <CommandItem
                                         key={item.label}
                                         className={cn(
-                                            "group border-2 border-transparent text-gray-300 data-[selected=true]:bg-[#262637] data-[selected=true]:text-white",
+                                            "THEMES-[selected=true]:bg-[#262637] THEMES-[selected=true]:text-white group border-2 border-transparent text-gray-300",
                                             isActive &&
                                                 "border-blue-500/30 bg-blue-500/10 text-blue-400",
                                         )}
-                                        value={item.label}
-                                        onSelect={(currentValue) => {
-                                            setValue(
-                                                isActive ? "" : currentValue,
-                                            );
-                                            setOpen(false);
-                                        }}
+                                        value={item.value}
+                                        onSelect={onSelect}
                                     >
                                         <div
                                             className={cn(
