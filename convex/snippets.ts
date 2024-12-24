@@ -63,6 +63,20 @@ export const deleteSnippet = mutation({
             throw new Error("Forbidden");
         }
 
+        const comments = await ctx.db
+            .query("comments")
+            .withIndex("by_snippet_id", (q) => q.eq("snippetId", id))
+            .collect();
+        const stars = await ctx.db
+            .query("stars")
+            .withIndex("by_snippet_id", (q) => q.eq("snippetId", id))
+            .collect();
+
+        await Promise.all([
+            ...comments.map((comment) => ctx.db.delete(comment._id)),
+            ...stars.map((star) => ctx.db.delete(star._id)),
+        ]);
+
         return ctx.db.delete(id);
     },
 });
