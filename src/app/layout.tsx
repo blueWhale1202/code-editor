@@ -64,19 +64,19 @@ export default function RootLayout({
                 <link rel="manifest" href="/favicon/site.webmanifest" />
             </head>
             <body className={inter.className}>
-                <Suspense fallback={<Loading />}>
-                    <ConvexClientProvider>
-                        <ThemeProvider
-                            attribute="class"
-                            defaultTheme="dark"
-                            enableSystem
-                            disableTransitionOnChange
-                        >
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="dark"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    <Suspense fallback={<Loading />}>
+                        <ConvexClientProvider>
                             <NuqsAdapter>{children}</NuqsAdapter>
                             <Toaster richColors theme="light" />
-                        </ThemeProvider>
-                    </ConvexClientProvider>
-                </Suspense>
+                        </ConvexClientProvider>
+                    </Suspense>
+                </ThemeProvider>
             </body>
         </html>
     );

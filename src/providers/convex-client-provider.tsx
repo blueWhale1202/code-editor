@@ -3,13 +3,16 @@
 import { ClerkProvider, useAuth } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
-import { ConvexReactClient } from "convex/react";
+import { AuthLoading, ConvexReactClient } from "convex/react";
 import { ConvexProviderWithClerk } from "convex/react-clerk";
 
 import { ConvexQueryClient } from "@convex-dev/react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
+import { Loading } from "@/components/loading";
+
+const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL!;
+const convex = new ConvexReactClient(convexUrl);
 
 const convexQueryClient = new ConvexQueryClient(convex);
 const queryClient = new QueryClient({
@@ -33,6 +36,9 @@ export const ConvexClientProvider = ({ children }: Props) => {
                 <QueryClientProvider client={queryClient}>
                     {children}
                 </QueryClientProvider>
+                <AuthLoading>
+                    <Loading />
+                </AuthLoading>
             </ConvexProviderWithClerk>
         </ClerkProvider>
     );
