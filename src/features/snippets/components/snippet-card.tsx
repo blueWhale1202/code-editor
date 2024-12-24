@@ -4,7 +4,7 @@ import { LANGUAGES } from "@/features/dashboard/constants";
 import { Language, Snippet } from "@/types";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -30,6 +30,11 @@ type Props = {
 
 export const SnippetCard = ({ snippet }: Props) => {
     const { user } = useCurrentUser();
+
+    const router = useRouter();
+    const onClick = () => {
+        router.push(`/snippets/${snippet._id}`);
+    };
 
     return (
         <Card className="group">
@@ -70,22 +75,22 @@ export const SnippetCard = ({ snippet }: Props) => {
                         )}
                     </div>
                 </div>
-                <CardTitle className="truncate text-xl group-hover:text-blue-400">
-                    <Link href={`/snippets/${snippet._id}`}>
+                <div onClick={onClick} className="cursor-pointer">
+                    <CardTitle className="truncate text-xl group-hover:text-blue-400">
                         {snippet.title}
-                    </Link>
-                </CardTitle>
-                <CardDescription className="flex items-center gap-2">
-                    <div className="rounded-md bg-gray-800 p-1">
-                        <User className="size-3" />
-                    </div>
-                    <span className="max-w-[150px] truncate">
-                        {snippet.userName}
-                    </span>
-                </CardDescription>
+                    </CardTitle>
+                    <CardDescription className="flex items-center gap-2">
+                        <div className="rounded-md bg-gray-800 p-1">
+                            <User className="size-3" />
+                        </div>
+                        <span className="max-w-[150px] truncate">
+                            {snippet.userName}
+                        </span>
+                    </CardDescription>
+                </div>
             </CardHeader>
-            <CardContent>
-                <div className="group/code relative">
+            <CardContent onClick={onClick}>
+                <div className="group/code relative cursor-pointer">
                     <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/15 to-purple-500/5 opacity-0 transition-all group-hover/code:opacity-100" />
                     <pre className="relative line-clamp-3 overflow-hidden rounded-lg bg-black/30 p-4 font-mono text-sm text-gray-300">
                         {snippet.code}
