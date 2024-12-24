@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ConvexClientProvider } from "@/providers/convex-client-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Suspense } from "react";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -25,17 +26,19 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={inter.className}>
-                <ConvexClientProvider>
-                    <ThemeProvider
-                        attribute="class"
-                        defaultTheme="dark"
-                        enableSystem
-                        disableTransitionOnChange
-                    >
-                        <NuqsAdapter>{children}</NuqsAdapter>
-                    </ThemeProvider>
-                </ConvexClientProvider>
-                <Toaster richColors theme="light" />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <ConvexClientProvider>
+                        <ThemeProvider
+                            attribute="class"
+                            defaultTheme="dark"
+                            enableSystem
+                            disableTransitionOnChange
+                        >
+                            <NuqsAdapter>{children}</NuqsAdapter>
+                            <Toaster richColors theme="light" />
+                        </ThemeProvider>
+                    </ConvexClientProvider>
+                </Suspense>
             </body>
         </html>
     );

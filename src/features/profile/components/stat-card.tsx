@@ -20,7 +20,7 @@ export const StatCard = (stat: Props) => {
         <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-black/40 to-black/20">
             <div
                 className={cn(
-                    "absolute inset-0 bg-gradient-to-r opacity-0 transition-all duration-500 group-hover:opacity-10",
+                    "absolute inset-0 bg-gradient-to-r opacity-10 transition-all duration-500",
                     stat.color,
                     stat.gradient,
                 )}
@@ -60,8 +60,6 @@ export const StatCard = (stat: Props) => {
                     </span>
                 </div>
             </div>
-
-            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
         </div>
     );
 };

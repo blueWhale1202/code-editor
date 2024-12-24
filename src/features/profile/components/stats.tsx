@@ -29,15 +29,13 @@ export const Stats = () => {
     }
 
     return (
-        <div className="relative mb-8 overflow-hidden rounded-2xl border border-gray-800/50 bg-gradient-to-br from-[#12121a] to-[#1a1a2e] p-8">
-            <div className="relative flex items-center gap-8">
-                <div className="group relative">
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 opacity-50 blur-xl transition-opacity group-hover:opacity-75" />
-                    <UserAvatar
-                        src={user?.imageUrl}
-                        className="size-16 lg:size-24"
-                    />
-                </div>
+        <div className="mb-8 overflow-hidden rounded-2xl border border-gray-800/50 bg-gradient-to-br from-[#12121a] to-[#1a1a2e] p-8">
+            <div className="flex items-center gap-8">
+                <UserAvatar
+                    src={user?.imageUrl}
+                    className="size-16 lg:size-24"
+                />
+
                 <div>
                     <div className="mb-2 flex items-center gap-3">
                         <h1 className="text-xl font-bold text-white lg:text-3xl">
