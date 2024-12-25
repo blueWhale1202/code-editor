@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const RunButton = ({ disabled, onClick }: Props) => {
-    const { isAuthenticated, user } = useCurrentUser();
+    const { isAuthenticated } = useCurrentUser();
 
     const onExecute = () => {
         if (!isAuthenticated || disabled) return;
@@ -27,7 +27,7 @@ export const RunButton = ({ disabled, onClick }: Props) => {
                     : "You need to Login/Sing up to Run"
             }
         >
-            <Button disabled={disabled} onClick={onExecute}>
+            <Button disabled={disabled || !isAuthenticated} onClick={onExecute}>
                 {disabled ? (
                     <>
                         <Loader2 className="animate-spin text-white/70" />
