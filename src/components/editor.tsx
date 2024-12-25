@@ -10,7 +10,7 @@ import {
     setDraftCode,
 } from "@/features/dashboard/lib/utils";
 
-import { useMounted } from "@/hooks/use-mounted";
+import { useClerk } from "@clerk/nextjs";
 
 type Props = {
     theme: Theme;
@@ -27,9 +27,11 @@ export const CodeEditor = ({
     value,
     onChange,
 }: Props) => {
-    const isMounted = useMounted();
+    // Monaco Editor causes ClerkJS to fail loading
+    // https://github.com/clerk/javascript/issues/1643
+    const clerk = useClerk();
 
-    if (!isMounted) {
+    if (!clerk.loaded) {
         return null;
     }
 
