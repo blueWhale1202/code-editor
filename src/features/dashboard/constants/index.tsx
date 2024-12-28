@@ -2,6 +2,7 @@ import { Language, Theme } from "@/types";
 
 import {
     AlarmClockCheck,
+    BookOpen,
     CloudMoon,
     DraftingCompass,
     Eclipse,
@@ -10,7 +11,6 @@ import {
     LucideIcon,
     MessageCircleMore,
     Moon,
-    SquareTerminal,
     Users,
     VideoIcon,
 } from "lucide-react";
@@ -102,6 +102,11 @@ export type ToolItem = {
 
 export const TOOLS: ToolItem[] = [
     {
+        label: "Course",
+        href: process.env.NEXT_PUBLIC_COURSE_URL!,
+        icon: BookOpen,
+    },
+    {
         label: "Forum",
         href: process.env.NEXT_PUBLIC_FORUM_URL!,
         icon: MessageCircleMore,
@@ -120,11 +125,6 @@ export const TOOLS: ToolItem[] = [
         label: "Drawing App",
         href: process.env.NEXT_PUBLIC_DRAW_APP_URL!,
         icon: DraftingCompass,
-    },
-    {
-        label: "Code Editor",
-        href: process.env.NEXT_PUBLIC_EDITOR_URL!,
-        icon: SquareTerminal,
     },
 ];
 
