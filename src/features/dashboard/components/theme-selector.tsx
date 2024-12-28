@@ -43,7 +43,7 @@ export const ThemeSelector = () => {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="group w-40 justify-start border-gray-800/50 bg-[#1e1e2e]/80 hover:border-gray-700 hover:bg-[#262637]"
+                    className="group w-full justify-start border-gray-800/50 bg-[#1e1e2e]/80 hover:border-gray-700 hover:bg-[#262637] sm:w-40"
                 >
                     <Palette className="text-gray-400 group-hover:text-gray-300" />
                     <span className="text-gray-300 group-hover:text-white">
@@ -60,13 +60,13 @@ export const ThemeSelector = () => {
                     <CommandList>
                         <CommandGroup heading="Select Theme">
                             {THEMES.map((item) => {
-                                const isActive = value === item.label;
+                                const isActive = value === item.value;
 
                                 return (
                                     <CommandItem
                                         key={item.label}
                                         className={cn(
-                                            "THEMES-[selected=true]:bg-[#262637] THEMES-[selected=true]:text-white group border-2 border-transparent text-gray-300",
+                                            "group border-2 border-transparent text-gray-300 data-[selected=true]:bg-blue-500/20",
                                             isActive &&
                                                 "border-blue-500/30 bg-blue-500/10 text-blue-400",
                                         )}

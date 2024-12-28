@@ -1,12 +1,18 @@
 import { Language, Theme } from "@/types";
 
 import {
+    AlarmClockCheck,
     CloudMoon,
+    DraftingCompass,
     Eclipse,
     Github,
     Glasses,
     LucideIcon,
+    MessageCircleMore,
     Moon,
+    SquareTerminal,
+    Users,
+    VideoIcon,
 } from "lucide-react";
 
 type ThemeItem = {
@@ -87,5 +93,44 @@ export const LANGUAGES: Record<Language, LanguageConfig> = {
         logo: "/languages/csharp.svg",
     },
 };
+
+export type ToolItem = {
+    icon: LucideIcon;
+    label: string;
+    href: string;
+};
+
+export const TOOLS: ToolItem[] = [
+    {
+        label: "Forum",
+        href: process.env.NEXT_PUBLIC_FORUM_URL!,
+        icon: MessageCircleMore,
+    },
+    {
+        label: "Task Manager",
+        href: process.env.NEXT_PUBLIC_TASK_MANAGER_URL!,
+        icon: AlarmClockCheck,
+    },
+    {
+        label: "Live Coding",
+        href: process.env.NEXT_PUBLIC_LIVE_CODING_URL!,
+        icon: VideoIcon,
+    },
+    {
+        label: "Drawing App",
+        href: process.env.NEXT_PUBLIC_DRAW_APP_URL!,
+        icon: DraftingCompass,
+    },
+    {
+        label: "Code Editor",
+        href: process.env.NEXT_PUBLIC_EDITOR_URL!,
+        icon: SquareTerminal,
+    },
+];
+
+export const TOOLS_MOBILE: ToolItem[] = [
+    { href: "/snippets", label: "Community", icon: Users },
+    ...TOOLS,
+];
 
 export const DRAFT_CODE_KEY = "editor-draft";

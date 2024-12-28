@@ -1,11 +1,13 @@
 import Link from "next/link";
 
-import { Users } from "lucide-react";
 import { Button } from "./ui/button";
+
+import { Users } from "lucide-react";
+import { Tools } from "./tools";
 
 export const Navigation = () => {
     return (
-        <nav>
+        <nav className="flex items-center gap-x-4">
             <Button variant="outline" asChild>
                 <Link
                     href="/snippets"
@@ -15,6 +17,7 @@ export const Navigation = () => {
                     <span>Community</span>
                 </Link>
             </Button>
+            <Tools />
         </nav>
     );
 };

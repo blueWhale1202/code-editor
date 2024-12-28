@@ -44,7 +44,7 @@ export const LanguageSelector = () => {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="group w-44 justify-start border-gray-800/50 bg-[#1e1e2e]/80 hover:border-gray-700 hover:bg-[#262637]"
+                    className="group w-full justify-start border-gray-800/50 bg-[#1e1e2e]/80 hover:border-gray-700 hover:bg-[#262637] sm:w-44"
                 >
                     <div className="size-6 rounded-md bg-gray-800/50 p-0.5">
                         <Image
@@ -73,7 +73,7 @@ export const LanguageSelector = () => {
                                     <CommandItem
                                         key={item.label}
                                         className={cn(
-                                            "LANGUAGES-[selected=true]:bg-[#262637] LANGUAGES-[selected=true]:text-white group border-2 border-transparent py-2 text-gray-300",
+                                            "group border-2 border-transparent py-2 text-gray-300 data-[selected=true]:bg-blue-500/20",
                                             isActive &&
                                                 "border-blue-500/30 bg-blue-500/10 text-blue-400",
                                         )}
@@ -83,10 +83,10 @@ export const LanguageSelector = () => {
                                         <div
                                             className={cn(
                                                 "relative size-8 rounded-lg bg-gray-800/50 p-1.5",
-                                                isActive && "bg-blue-500/10",
+                                                isActive &&
+                                                    "bg-blue-500/10 hover:!bg-blue-500/20",
                                             )}
                                         >
-                                            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 transition-opacity group-hover:opacity-100" />
                                             <Image
                                                 width={20}
                                                 height={20}
