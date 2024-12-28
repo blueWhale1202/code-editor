@@ -75,7 +75,7 @@ export const SnippetCard = ({ snippet }: Props) => {
                         )}
                     </div>
                 </div>
-                <div onClick={onClick} className="cursor-pointer">
+                <div onClick={onClick} className="cursor-pointer space-y-2">
                     <CardTitle className="truncate text-xl group-hover:text-blue-400">
                         {snippet.title}
                     </CardTitle>
@@ -83,7 +83,7 @@ export const SnippetCard = ({ snippet }: Props) => {
                         <div className="rounded-md bg-gray-800 p-1">
                             <User className="size-3" />
                         </div>
-                        <span className="max-w-[150px] truncate">
+                        <span className="max-w-[150px] truncate text-xs">
                             {snippet.userName}
                         </span>
                     </CardDescription>
