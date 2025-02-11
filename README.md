@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Code Editor Project
 
-## Getting Started
+## 📌 Overview
+The **Code Editor** project is designed to provide a seamless and powerful coding experience directly in the browser. It supports multiple programming languages, offers rich development features, and ensures efficient execution with a scalable backend.
 
-First, run the development server:
+## 🎯 Challenges & Solutions
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### **Challenges**
+- Direct execution of compiled languages (C++, C#, Java, etc.) in the browser is not feasible due to runtime dependencies.
+  
+### **Solutions**
+- **Docker Engine**: Utilizes pre-configured containers to run executable code, collect results, and remove containers after execution.
+- **Piston Engine**: Acts as a dispatcher to determine runtime environments and optimize resource allocation, reducing the need for manual Docker configurations.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔥 Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 📝 **Advanced Code Editing**
+- **Code Completion**: Helps in writing code efficiently with intelligent suggestions.
+- **Parameter Info**: Displays function/method parameter hints.
+- **Quick Info**: Shows detailed descriptions of functions, variables, and objects.
+- **Member Lists**: Autocompletes object properties and methods.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🚀 **Powerful Execution & Debugging**
+- **Syntax Error Detection**: Provides real-time syntax error highlighting.
+- **Code Formatting**: Automatically formats code for better readability.
+- **Multi-language Support**:
+  - **Compiled Languages**: C++, C#, Java.
+  - **Interpreted Languages**: JavaScript, TypeScript, Python.
+- **Execution Output**:
+  - Displays program results (Success/Error).
+  - Error messages are clearly shown for debugging.
 
-## Learn More
+### 🌟 **User Experience Enhancements**
+- **Customizable Themes**: Aesthetic and user-friendly themes.
+- **Quick Code Copying**: Easily copy code snippets with a single click.
+- **Snippet Sharing**:
+  - Share successfully executed code for community reference.
+  - Integrated discussions on shared snippets.
+  - Markdown-supported comments with **syntax highlighting**.
 
-To learn more about Next.js, take a look at the following resources:
+### 🔍 **Search & Filtering**
+- **Efficient Search**: Find relevant code snippets easily.
+- **Language-based Filtering**: Narrow down searches based on programming language.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎯 Why Choose This Code Editor?
+- **Highly Scalable**: Optimized execution with Docker & Piston.
+- **Enhanced Collaboration**: Share and discuss code seamlessly.
+- **Rich Feature Set**: Everything a developer needs, all in one place.
